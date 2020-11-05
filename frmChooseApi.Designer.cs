@@ -87,6 +87,7 @@
             this.Controls.Add(this.ddlapi);
             this.Controls.Add(this.label1);
             this.Name = "frmChooseApi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmChooseApi";
             this.Load += new System.EventHandler(this.frmChooseApi_Load);
             this.ResumeLayout(false);

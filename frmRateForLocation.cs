@@ -24,7 +24,10 @@ namespace WindowsFormsApp1
         {
 
 
-            CheckInputs();
+            if(CheckInputs()!="ok")
+            {
+                return;
+            }
             GetResponseApi = service.GetTaxRateForLocation(GetOrderInput());
 
             if (!GetResponseApi.Contains("Error"))
@@ -55,7 +58,10 @@ namespace WindowsFormsApp1
 
                 getinput.Add(txtzipcode.Text);
                 if(txtcity.Text!="")
-                { getinput.Add(txtcity.Text); }
+                { getinput.Add(txtcity.Text); 
+                
+                
+                }
                 if(txtcountry.Text!="")
                 getinput.Add(txtcountry.Text);
                
@@ -93,15 +99,20 @@ namespace WindowsFormsApp1
         }
 
         //check input fields for validation
-        public void CheckInputs()
+        public string CheckInputs()
         {
 
             if (txtzipcode.Text == "")
             {
-                //label13.Text = "Please enter to zipcode";
+                label13.Text = "Please enter to zipcode";
+                return label13.Text;
 
             }
-            
+            else
+            {
+
+                return "ok";
+            }
         
         
 

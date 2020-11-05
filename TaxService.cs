@@ -18,6 +18,9 @@ namespace WindowsFormsApp1
     {
 
         public static string ApiName = "";
+
+
+       
         public TaxService(string Api)
         {
 
@@ -95,41 +98,49 @@ namespace WindowsFormsApp1
         public String CalculateSalesTaxForOrder(ArrayList OrderInput)
         {
 
-            var client = new TaxjarApi(ConfigurationManager.AppSettings["taxzarkey"]);
-            var tax = client.TaxForOrder(new
+            string amounttocollect = "";
+            try
             {
-               from_country= OrderInput[0].ToString(),
-                from_zip= OrderInput[1].ToString(),
-                from_state= OrderInput[2].ToString(),
-                from_city= OrderInput[3].ToString(),
-      
-                to_country = OrderInput[4].ToString(),
-                to_zip = OrderInput[5].ToString(),
-                to_state = OrderInput[6].ToString(),
-                to_city = OrderInput[7].ToString(),
-                amount = OrderInput[8].ToString(),
-                shipping = OrderInput[9].ToString()
+                var client = new TaxjarApi(ConfigurationManager.AppSettings["taxzarkey"]);
+                var tax = client.TaxForOrder(new
+                {
+                    from_country = OrderInput[0].ToString(),
+                    from_zip = OrderInput[1].ToString(),
+                    from_state = OrderInput[2].ToString(),
+                    from_city = OrderInput[3].ToString(),
 
-            });
+                    to_country = OrderInput[4].ToString(),
+                    to_zip = OrderInput[5].ToString(),
+                    to_state = OrderInput[6].ToString(),
+                    to_city = OrderInput[7].ToString(),
+                    amount = OrderInput[8].ToString(),
+                    shipping = OrderInput[9].ToString()
 
-            var json = JsonConvert.SerializeObject(tax);
+                });
+
+                var json = JsonConvert.SerializeObject(tax);
 
 
-            JObject parsed = JObject.Parse(json);
+                JObject parsed = JObject.Parse(json);
 
-            string amounttocollect = "";        
-            foreach (var i in parsed)
-            {
-
-              if(i.Key.ToString()=="amount_to_collect")
+               
+                foreach (var i in parsed)
                 {
 
-                    amounttocollect = i.Value.ToString();
+                    if (i.Key.ToString() == "amount_to_collect")
+                    {
+
+                        amounttocollect = i.Value.ToString();
+
+                    }
 
                 }
+            }
+            catch(Exception ex)
+            {
+                amounttocollect = "0";
 
             }
-
 
 
             return amounttocollect;

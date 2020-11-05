@@ -1,0 +1,24 @@
+Instructions to Use and Test Cases
+
+1. This software is made in .net core 3.1
+2.run he software in visual studio 2019
+3. if you dont want to run in visual studio 2019 ,you can directly run its exe present in folder root-bin-debug-netcoreapp3.1-TaxCalculator(just click this exe)
+4. test case for calculating taxfor order
+
+from counry="US"
+From zip="07001"
+from state="NJ"
+FROM CITY="Avenel"
+to country="US"
+TO zip="07446"
+to state="NJ"
+TO city="Ramsey"
+amount=16.50
+shipping= 1.50
+
+
+5. test case for getting rate for zip
+
+zip code=90002
+city="LOS ANGELES"
+COUNTRY="US"

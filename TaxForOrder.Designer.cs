@@ -352,7 +352,9 @@
             this.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "TaxForOrder";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TaxJar";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.TaxForOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

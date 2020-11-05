@@ -180,6 +180,7 @@
             this.Controls.Add(this.txtzipcode);
             this.Controls.Add(this.label1);
             this.Name = "frmRateForLocation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRateForLocation";
             this.Load += new System.EventHandler(this.frmRateForLocation_Load);
             this.ResumeLayout(false);

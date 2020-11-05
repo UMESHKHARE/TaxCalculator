@@ -33,7 +33,8 @@ namespace WindowsFormsApp1
         {
 
 
-            CheckInputs();
+            if (CheckInputs() != "Ok")
+            { return; }
             GetResponseApi = service.CalculateSalesTaxForOrder(GetOrderInput());
 
             if (!GetResponseApi.Contains("Error"))
@@ -118,32 +119,36 @@ namespace WindowsFormsApp1
         }
 
         //check input fields for validation
-      public void CheckInputs()
+      public string CheckInputs()
         {
 
             if (txttocountry.Text == "")
             {
                 label13.Text = "Please enter to Country";
-
+                return label13.Text;
             }
             else if (txttostate.Text == "")
             {
                 label13.Text = "Please enter to state";
+                return label13.Text;
             }
             else if (txttozip.Text == "")
             {
                 label13.Text = "Please enter to zip";
+                return label13.Text;
 
             }
             else if (txtshippingamount.Text == "")
             {
                 label13.Text = "Please enter shipping amount";
+                return label13.Text;
             }
             else if (txtamount.Text == "")
             {
                 label13.Text = "Please enter order amount";
+                return label13.Text;
             }
-            else
+            else 
             {
                 try
                 {
@@ -152,6 +157,7 @@ namespace WindowsFormsApp1
                 catch (Exception ex)
                 {
                     label13.Text = "Please enter shipping amount in decimal";
+                    return label13.Text;
                 }
 
 
@@ -161,10 +167,13 @@ namespace WindowsFormsApp1
                 }
                 catch (Exception ex)
                 {
-                    label13.Text = "Please enter shipping amount in decimal";
+                    label13.Text = "Please enter order amount in decimal";
+                    return label13.Text;
                 }
-
+                return "Ok";
             }
+
+           
 
         }
 
